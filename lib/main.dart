@@ -16,6 +16,7 @@ class FruitsHub extends StatelessWidget {
     return MaterialApp(
       
       debugShowCheckedModeBanner: false,
+      
       title: 'Fruits Hub',
       
       onGenerateRoute: generateRoute,
