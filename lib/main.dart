@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fruits_hub_app/core/helper_functions/routing/generate_routes.dart';
 import 'package:fruits_hub_app/core/helper_functions/routing/routes.dart';
+import 'package:fruits_hub_app/core/services/shared_preference_singleton.dart';
 import 'package:fruits_hub_app/generated/l10n.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+ await SharedPrefs.init();
   runApp(const FruitsHub());
 }
 

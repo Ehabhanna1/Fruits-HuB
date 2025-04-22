@@ -35,6 +35,7 @@ dependencies:
   flutter_localization: ^0.3.2
   flutter_screenutil: ^5.9.3
   flutter_svg: ^2.1.0
+  shared_preferences: ^2.5.3
 
 dev_dependencies:
   flutter_launcher_icons: ^0.14.3
