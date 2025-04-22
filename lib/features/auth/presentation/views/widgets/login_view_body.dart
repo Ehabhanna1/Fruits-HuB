@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:fruits_hub_app/core/utils/app_colors.dart';
+import 'package:fruits_hub_app/core/utils/app_images.dart';
 import 'package:fruits_hub_app/core/utils/app_text.dart';
 import 'package:fruits_hub_app/core/utils/spacing.dart';
 import 'package:fruits_hub_app/core/widgets/custom_button.dart';
 import 'package:fruits_hub_app/core/widgets/custom_text_form_field.dart';
 import 'package:fruits_hub_app/features/auth/presentation/views/widgets/dont_have_account.dart';
 import 'package:fruits_hub_app/features/auth/presentation/views/widgets/or_divider_widgets.dart';
+import 'package:fruits_hub_app/features/auth/presentation/views/widgets/social_login_button.dart';
 
 class LoginViewBody extends StatelessWidget {
   const LoginViewBody({super.key});
@@ -50,6 +52,12 @@ class LoginViewBody extends StatelessWidget {
            verticalSpacing(30),
 
            const OrDividerWidgets(),
+          verticalSpacing(15),
+          SocialLoginButton(title: 'تسجيل بواسطة جوجل', image: AppImages.imagesGoogleIcon, onPressed: () {  },),
+          verticalSpacing(15),
+           SocialLoginButton(title: 'تسجيل بواسطة فيسبوك', image: AppImages.imagesFacebookIcon, onPressed: () {  },),
+          verticalSpacing(15),
+            SocialLoginButton(title: 'تسجيل بواسطة أبل', image: AppImages.imagesApplIcon, onPressed: () {  },)
           ],
         ),
       ),
