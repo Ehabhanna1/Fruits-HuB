@@ -5,14 +5,17 @@ import 'package:fruits_hub_app/core/utils/app_text.dart';
 import 'package:fruits_hub_app/features/on_boarding/presentation/widgets/page_view_items.dart';
 
 class OnBoardingPageView extends StatelessWidget {
-  const OnBoardingPageView({super.key});
+  const OnBoardingPageView({super.key, required this.pageController});
+
+  final PageController pageController;
 
   @override
   Widget build(BuildContext context) {
     return PageView(
+      controller: pageController,
       children: [
          PageViewItems(
-        //  isVisible: true,
+          isVisible: true,
           image: AppImages.imagesPageViewItem1Image,
           backgroundImage: AppImages.imagesPageViewItem1BackgroundImage,
           subtitle:
@@ -22,17 +25,17 @@ class OnBoardingPageView extends StatelessWidget {
             children: [
               Text(
                 'مرحبًا بك في',
-                style: TextStyles.bold23,
+                style: TextStyles.bold25,
               ),
               Text(
                 '  HUB',
-                style: TextStyles.bold23.copyWith(
+                style: TextStyles.bold25.copyWith(
                   color: AppColors.secondaryColor,
                 ),
               ),
               Text(
                 'Fruit',
-                style: TextStyles.bold23.copyWith(
+                style: TextStyles.bold25.copyWith(
                   color: AppColors.primaryColor,
                 ),
               ),
@@ -42,7 +45,7 @@ class OnBoardingPageView extends StatelessWidget {
 
 
       const PageViewItems(
-         // isVisible: false,
+          isVisible: false,
           image: AppImages.imagesPageViewItem2Image,
           backgroundImage: AppImages.imagesPageViewItem2BackgroundImage,
           subtitle:

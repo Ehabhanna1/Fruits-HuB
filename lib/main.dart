@@ -21,7 +21,9 @@ class FruitsHub extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       child: MaterialApp(
-
+          theme: ThemeData(
+          fontFamily: 'Cairo',
+        ) ,
         localizationsDelegates: [
                 S.delegate,
                  GlobalMaterialLocalizations.delegate,
