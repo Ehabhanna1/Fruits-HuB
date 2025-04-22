@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:fruits_hub_app/core/utils/app_colors.dart';
+import 'package:fruits_hub_app/core/utils/app_text.dart';
 import 'package:fruits_hub_app/core/utils/spacing.dart';
+import 'package:fruits_hub_app/core/widgets/custom_button.dart';
 import 'package:fruits_hub_app/core/widgets/custom_text_form_field.dart';
+import 'package:fruits_hub_app/features/auth/presentation/views/widgets/dont_have_account.dart';
+import 'package:fruits_hub_app/features/auth/presentation/views/widgets/or_divider_widgets.dart';
 
 class LoginViewBody extends StatelessWidget {
   const LoginViewBody({super.key});
@@ -24,9 +29,31 @@ class LoginViewBody extends StatelessWidget {
             ),
             
             ),
+            verticalSpacing(20),
+            Align(
+              alignment: AlignmentDirectional.centerEnd,
+              child: Text("نسيت كلمة المرور؟",style: TextStyles.bold15.copyWith(
+                color:AppColors.lightPrimaryColor,
+              ),
+              
+              ),
+            ),
+            verticalSpacing(35),
+           CustomButton(
+              text: 'تسجيل الدخول',
+              onPressed: () {
+                // Handle login action
+              },
+            ),
+            verticalSpacing(35),
+           const DontHaveAccount(),
+           verticalSpacing(30),
+
+           const OrDividerWidgets(),
           ],
         ),
       ),
     );
   }
-} 
+}
+

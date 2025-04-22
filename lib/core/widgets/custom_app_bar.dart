@@ -4,7 +4,8 @@ import 'package:fruits_hub_app/core/utils/app_text.dart';
 
 AppBar buildAppBar(BuildContext context, {required String title}) {
     return AppBar(
-      
+      backgroundColor: Colors.transparent,
+      elevation: 0.5,
       leading: IconButton(
         icon: const Icon(Icons.arrow_back_ios_new),
         onPressed: () => Navigator.of(context).pop(),
