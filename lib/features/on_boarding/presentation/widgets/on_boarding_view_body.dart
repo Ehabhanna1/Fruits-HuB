@@ -1,5 +1,6 @@
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
+import 'package:fruits_hub_app/core/helper_functions/routing/routes.dart';
 import 'package:fruits_hub_app/core/utils/app_colors.dart';
 import 'package:fruits_hub_app/core/utils/spacing.dart';
 import 'package:fruits_hub_app/core/widgets/custom_button.dart';
@@ -57,7 +58,9 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
           maintainSize: true,
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 23),
-            child: CustomButton(onPressed: () {}, text: 'ابدأ الان'),
+            child: CustomButton(onPressed: () {
+              Navigator.pushReplacementNamed(context, Routes.loginScreen);
+            }, text: 'ابدأ الان'),
           ),
         ),
         verticalSpacing(40),

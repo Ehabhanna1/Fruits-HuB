@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:fruits_hub_app/core/helper_functions/routing/routes.dart';
 import 'package:fruits_hub_app/core/utils/app_text.dart';
 
 class PageViewItems extends StatelessWidget {
@@ -31,9 +32,14 @@ class PageViewItems extends StatelessWidget {
 
                 Visibility(
                   visible: isVisible,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20,vertical:65),
-                    child: Text("تخط",style: TextStyles.regular16,),
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.pushReplacementNamed(context, Routes.loginScreen);
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20,vertical:65),
+                      child: Text("تخط",style: TextStyles.regular16,),
+                    ),
                   ),
                 ),
           
