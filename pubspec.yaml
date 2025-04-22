@@ -29,12 +29,14 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   cupertino_icons: ^1.0.8
+  dots_indicator: ^4.0.1
   flutter:
     sdk: flutter
+  flutter_localization: ^0.3.2
+  flutter_screenutil: ^5.9.3
   flutter_svg: ^2.1.0
 
 dev_dependencies:
-
   flutter_launcher_icons: ^0.14.3
 
   # The "flutter_lints" package below contains a set of recommended lints to
@@ -93,9 +95,9 @@ flutter_launcher_icons:
   image_path: "assets/images/app_icon.png"
   min_sdk_android: 21 # android min sdk min:16, default 21
 
-
 flutter_assets:
   assets_path: assets/images/
   output_path: lib/core/utils
   filename: app_images.dart
-
+flutter_intl:
+  enabled: true
