@@ -1,7 +1,7 @@
 class Routes {
   static const String splashView = '/';
   static const String onBoardingView = '/onBoardingView';
-  static const String loginScreen = '/loginScreen';
-  static const String signUpScreen = '/signUpScreen';
-  static const String homeScreen = '/homeScreen';
+  static const String loginView = '/loginView';
+  static const String signUpView = '/signUpView';
+  static const String homeView = '/homeView';
 }
