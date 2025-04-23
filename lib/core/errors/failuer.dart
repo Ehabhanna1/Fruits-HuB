@@ -4,5 +4,5 @@ abstract class Failuer {
 }
 
 class ServerFailuer extends Failuer {
-  const ServerFailuer(String message) : super(message);
+  const ServerFailuer(super.message);
 }

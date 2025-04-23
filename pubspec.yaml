@@ -35,10 +35,13 @@ dependencies:
   firebase_core: ^3.13.0
   flutter:
     sdk: flutter
+  flutter_bloc: ^9.1.0
   flutter_localization: ^0.3.2
   flutter_screenutil: ^5.9.3
   flutter_svg: ^2.1.0
+  get_it: ^8.0.3
   shared_preferences: ^2.5.3
+  modal_progress_hud_nsn: ^0.5.1
 
 dev_dependencies:
   flutter_launcher_icons: ^0.14.3
