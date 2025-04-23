@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fruits_hub_app/core/utils/app_text.dart';
 
 class CustomTextFormField extends StatelessWidget {
-  const CustomTextFormField({super.key, required this.hintText, required this.keyboardType, this.suffixIcon, this.onSaved});
+  const CustomTextFormField({super.key, required this.hintText, required this.keyboardType, this.suffixIcon, this.onSaved,  this.obscureText = false});
 
   final String hintText;
   final TextInputType keyboardType;
@@ -10,12 +10,15 @@ class CustomTextFormField extends StatelessWidget {
   final Widget? suffixIcon;
 
   final void Function(String?)? onSaved;
+
+  final bool obscureText;
  
 
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      obscureText: obscureText ,
       onSaved: onSaved,
       validator: (value) {
         if (value == null || value.isEmpty) {
