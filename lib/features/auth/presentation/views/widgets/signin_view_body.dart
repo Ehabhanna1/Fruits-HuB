@@ -94,7 +94,7 @@ class _SigninViewBodyState extends State<SigninViewBody> {
                 image: AppImages.imagesFacebookIcon,
                 onPressed: () {
                   // Handle Facebook login action
-                 // context.read<SignInCubit>().signInWithFacebook();
+                  context.read<SignInCubit>().signInWithFacebook();
                 },
               ),
               verticalSpacing(15),
