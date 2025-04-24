@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
 import 'package:fruits_hub_app/core/errors/exceptions.dart';
 import 'package:fruits_hub_app/core/errors/failuer.dart';
@@ -19,10 +21,24 @@ class AuthRepoImpl extends AuthRepo {
   return Right(UserModel.fromFirebaseUser(user));
 } on CustomException catch (e) {
   return left(ServerFailuer(e.message));
-}catch (e) {
+} catch (e) {
+  log("Exception in AuthRepoImpl.createUserWithEmailAndPassword: ${e.toString()}");
   return left(ServerFailuer("لقد حدث خطأ  أثناء إنشاء الحساب"));
-  }
+}
  
 }
+
+  @override
+  Future<Either<Failuer, UserEntity>> signInWithEmailAndPassword(String email, String password) async {
+    try {
+      var user = await firebaseAuthService.signInWithEmailAndPassword(email: email, password: password);
+      return Right(UserModel.fromFirebaseUser(user));
+    } on CustomException catch (e) {
+      return left(ServerFailuer(e.message));
+    } catch (e) {
+      log("Exception in AuthRepoImpl.signInWithEmailAndPassword: ${e.toString()}");
+      return left(ServerFailuer("لقد حدث خطأ أثناء تسجيل الدخول"));
+    }
+  }
   
 }
