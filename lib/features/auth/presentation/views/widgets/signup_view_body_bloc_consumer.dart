@@ -15,7 +15,7 @@ class SignUpViewBlocConsumer extends StatelessWidget {
     return BlocConsumer<SignupCubit, SignupState>(
     listener: (context, state) {
       if(state is SignupSuccess){
-        Navigator.pushNamed(context, Routes.homeView);
+      //  Navigator.pushNamed(context, Routes.homeView);
       }
       if(state is SignupFailure){
         ScaffoldMessenger.of(context).showSnackBar(

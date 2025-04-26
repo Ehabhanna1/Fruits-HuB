@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fruits_hub_app/core/errors/exceptions.dart';
 import 'package:fruits_hub_app/core/errors/failuer.dart';
 import 'package:fruits_hub_app/core/services/database_service.dart';
@@ -11,40 +12,65 @@ import 'package:fruits_hub_app/features/auth/domain/entities/user_entity.dart';
 import 'package:fruits_hub_app/features/auth/domain/repos/auth_repo.dart';
 
 class AuthRepoImpl extends AuthRepo {
-
-   final FirebaseAuthService firebaseAuthService;
-   final DataBaseService dataBaseService;
-  AuthRepoImpl( {required this.firebaseAuthService, required this.dataBaseService});
+  final FirebaseAuthService firebaseAuthService;
+  final DataBaseService dataBaseService;
+  AuthRepoImpl({
+    required this.firebaseAuthService,
+    required this.dataBaseService,
+  });
   @override
-  Future<Either<Failuer, UserEntity>> createUserWithEmailAndPassword(String email, String password, String name) async {
+  Future<Either<Failuer, UserEntity>> createUserWithEmailAndPassword(
+    String email,
+    String password,
+    String name,
+  ) async {
+    User? user;
     try {
-  var user = await firebaseAuthService.createUserWithEmailAndPassword(email: email, password: password);
-  var userEntity = UserModel.fromFirebaseUser(user);
-  await addUserData(user: userEntity);
-  
-  return Right(userEntity);
-} on CustomException catch (e) {
-  return left(ServerFailuer(e.message));
-} catch (e) {
-  log("Exception in AuthRepoImpl.createUserWithEmailAndPassword: ${e.toString()}");
-  return left(ServerFailuer("لقد حدث خطأ  أثناء إنشاء الحساب"));
-}
- 
-}
+       user = await firebaseAuthService.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      var userEntity = UserEntity(name: name, email: email, uId: user.uid);
+      await addUserData(user: userEntity);
+
+      return Right(userEntity);
+    } on CustomException catch (e) {
+      if (user != null){
+        await firebaseAuthService.deleteUser();
+      }
+      return left(ServerFailuer(e.message));
+    } catch (e) {
+      if (user != null){
+        await firebaseAuthService.deleteUser();
+      }
+      log(
+        "Exception in AuthRepoImpl.createUserWithEmailAndPassword: ${e.toString()}",
+      );
+      return left(ServerFailuer("لقد حدث خطأ  أثناء إنشاء الحساب"));
+    }
+  }
 
   @override
-  Future<Either<Failuer, UserEntity>> signInWithEmailAndPassword(String email, String password) async {
+  Future<Either<Failuer, UserEntity>> signInWithEmailAndPassword(
+    String email,
+    String password,
+  ) async {
     try {
-      var user = await firebaseAuthService.signInWithEmailAndPassword(email: email, password: password);
+      var user = await firebaseAuthService.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
       return Right(UserModel.fromFirebaseUser(user));
     } on CustomException catch (e) {
       return left(ServerFailuer(e.message));
     } catch (e) {
-      log("Exception in AuthRepoImpl.signInWithEmailAndPassword: ${e.toString()}");
+      log(
+        "Exception in AuthRepoImpl.signInWithEmailAndPassword: ${e.toString()}",
+      );
       return left(ServerFailuer("لقد حدث خطأ أثناء تسجيل الدخول"));
     }
   }
-  
+
   @override
   Future<Either<Failuer, UserEntity>> signInWithGoogle() async {
     try {
@@ -55,7 +81,7 @@ class AuthRepoImpl extends AuthRepo {
       return left(ServerFailuer("لقد حدث خطأ أثناء تسجيل الدخول"));
     }
   }
-  
+
   @override
   Future<Either<Failuer, UserEntity>> signInWithFacebook() async {
     try {
@@ -66,12 +92,12 @@ class AuthRepoImpl extends AuthRepo {
       return left(ServerFailuer("لقد حدث خطأ أثناء تسجيل الدخول"));
     }
   }
-  
+
   @override
   Future addUserData({required UserEntity user}) async {
-
-    await dataBaseService.addData(path: BackendEndpoint.addUserData, data: user.toMap());
-    
+    await dataBaseService.addData(
+      path: BackendEndpoint.addUserData,
+      data: user.toMap(),
+    );
   }
-  
 }
