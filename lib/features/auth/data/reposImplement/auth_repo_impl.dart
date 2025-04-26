@@ -3,7 +3,9 @@ import 'dart:developer';
 import 'package:dartz/dartz.dart';
 import 'package:fruits_hub_app/core/errors/exceptions.dart';
 import 'package:fruits_hub_app/core/errors/failuer.dart';
+import 'package:fruits_hub_app/core/services/database_service.dart';
 import 'package:fruits_hub_app/core/services/firebase_auth_service.dart';
+import 'package:fruits_hub_app/core/utils/backend_endpoint.dart';
 import 'package:fruits_hub_app/features/auth/data/models/user_model.dart';
 import 'package:fruits_hub_app/features/auth/domain/entities/user_entity.dart';
 import 'package:fruits_hub_app/features/auth/domain/repos/auth_repo.dart';
@@ -11,14 +13,16 @@ import 'package:fruits_hub_app/features/auth/domain/repos/auth_repo.dart';
 class AuthRepoImpl extends AuthRepo {
 
    final FirebaseAuthService firebaseAuthService;
-  AuthRepoImpl({required this.firebaseAuthService});
+   final DataBaseService dataBaseService;
+  AuthRepoImpl( {required this.firebaseAuthService, required this.dataBaseService});
   @override
   Future<Either<Failuer, UserEntity>> createUserWithEmailAndPassword(String email, String password, String name) async {
     try {
   var user = await firebaseAuthService.createUserWithEmailAndPassword(email: email, password: password);
-  // Note: The 'name' parameter is removed as it is not part of the interface.
+  var userEntity = UserModel.fromFirebaseUser(user);
+  await addUserData(user: userEntity);
   
-  return Right(UserModel.fromFirebaseUser(user));
+  return Right(userEntity);
 } on CustomException catch (e) {
   return left(ServerFailuer(e.message));
 } catch (e) {
@@ -61,6 +65,13 @@ class AuthRepoImpl extends AuthRepo {
       log("Exception in AuthRepoImpl.signInWithFacebook: ${e.toString()}");
       return left(ServerFailuer("لقد حدث خطأ أثناء تسجيل الدخول"));
     }
+  }
+  
+  @override
+  Future addUserData({required UserEntity user}) async {
+
+    await dataBaseService.addData(path: BackendEndpoint.addUserData, data: user.toMap());
+    
   }
   
 }
