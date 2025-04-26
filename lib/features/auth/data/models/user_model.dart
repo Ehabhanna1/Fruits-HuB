@@ -13,4 +13,18 @@ class UserModel  extends UserEntity{
       uId: 'No Password', // Password is not retrievable from Firebase User
     );
   }
+
+
+  factory UserModel.fromJson(Map<String, dynamic> json) {
+    return UserModel(
+      name: json['name'] ?? 'No Name',
+      email: json['email'] ?? 'No Email',
+      uId: json['uId'] ?? 'No UId',
+    );
+  }
+
+
+
+
+
 }
