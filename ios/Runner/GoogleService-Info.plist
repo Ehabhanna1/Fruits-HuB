@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>591561989240-bquv1c11aha0ksk0p23qq7g7vrilb97m.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.591561989240-bquv1c11aha0ksk0p23qq7g7vrilb97m</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>591561989240-bugrms4dvf9ult0kgvt8arcmkmmo743g.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyD7SFr4WuGvM_o7cKaQ83kiSAa3cEUjHP0</string>
+	<key>GCM_SENDER_ID</key>
+	<string>591561989240</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.fruitsHubApp</string>
+	<key>PROJECT_ID</key>
+	<string>fruits-hub-27b09</string>
+	<key>STORAGE_BUCKET</key>
+	<string>fruits-hub-27b09.firebasestorage.app</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:591561989240:ios:6af297de99dbe28513218d</string>
+</dict>
+</plist>
