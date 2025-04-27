@@ -11,21 +11,26 @@ class FeatureItemButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: double.infinity,
-      height: 60,
+     
+      height:38,
       child: TextButton(
         style: TextButton.styleFrom(
           backgroundColor: Colors.white,
           
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15),
+            borderRadius: BorderRadius.circular(5),
           ),
         ),
         
         onPressed: onPressed,
-         child: Text('تسوق الآن',style: TextStyles.bold15.copyWith(
-           color: AppColors.primaryColor
-         ))
+         child: Padding(
+           padding: const EdgeInsets.symmetric(horizontal: 21,),
+           child: FittedBox(
+             child: Text('تسوق الآن',style: TextStyles.bold15.copyWith(
+               color: AppColors.primaryColor
+             )),
+           ),
+         )
          ),
     );
   }

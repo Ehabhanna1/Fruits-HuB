@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+
+import 'package:flutter_svg_provider/flutter_svg_provider.dart' as svg;
+
 import 'package:fruits_hub_app/core/utils/app_images.dart';
 import 'package:fruits_hub_app/core/utils/app_text.dart';
+import 'package:fruits_hub_app/core/utils/spacing.dart';
 import 'package:fruits_hub_app/features/home/presentation/views/widgets/feature_item_button.dart';
 
 class FeatureItem extends StatelessWidget {
@@ -9,20 +13,38 @@ class FeatureItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: MediaQuery.sizeOf(context).width *0.9,
-      child: Stack(
-        children: [
-          Image.asset(AppImages.imagesWatermelonTest),
-          Container(
-            child: Column(
-              children: [
-                Text("عروض العيد",style: TextStyles.regular16.copyWith(color: Colors.white),),
-                Text(" خصم 25%",style: TextStyles.bold21,),
-                FeatureItemButton(onPressed: () {},),
-              ],
+      width: MediaQuery.sizeOf(context).width ,
+      child: AspectRatio(
+        aspectRatio: 342/158,
+        child: Stack(
+          children: [
+            Image.asset(AppImages.imagesWatermelonTest),
+            Container(
+              width: MediaQuery.sizeOf(context).width *0.5,
+              decoration:BoxDecoration(
+                image: DecorationImage(
+                  image: svg.Svg(AppImages.imagesFeaturedItemBackground),
+                  fit: BoxFit.fill,
+                ),
+              ) ,
+              child: Padding(
+                padding: const EdgeInsets.only(right: 33),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    verticalSpacing(20),
+                    Text("عروض العيد",style: TextStyles.regular16.copyWith(color: Colors.white),),
+                     const Spacer(),
+                    Text("خصم 25%",style: TextStyles.bold21.copyWith(color: Colors.white),),
+                    verticalSpacing(13),
+                    FeatureItemButton(onPressed: () {},),
+                    verticalSpacing(30),
+                  ],
+                ),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

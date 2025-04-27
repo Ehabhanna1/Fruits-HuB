@@ -21,7 +21,7 @@ class HomeViewBody extends StatelessWidget {
                 CustomHomeAppBar(),
                 verticalSpacing(16),
                 SearchTextField(),
-                verticalSpacing(12),
+                verticalSpacing(16),
                 FeatureItem(),
               ],
             ),
