@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:flutter_svg_provider/flutter_svg_provider.dart' as svg;
 
@@ -18,7 +19,12 @@ class FeatureItem extends StatelessWidget {
         aspectRatio: 342/158,
         child: Stack(
           children: [
-            Image.asset(AppImages.imagesWatermelonTest),
+            Positioned(
+              left: 0,
+              bottom: 0,
+              right: MediaQuery.sizeOf(context).width *0.4,
+              top: 0,
+              child: SvgPicture.asset(AppImages.imagesPageViewItem2Image,fit: BoxFit.fill,)),
             Container(
               width: MediaQuery.sizeOf(context).width *0.5,
               decoration:BoxDecoration(
@@ -49,3 +55,4 @@ class FeatureItem extends StatelessWidget {
     );
   }
 }
+              
