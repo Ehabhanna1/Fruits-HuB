@@ -50,6 +50,8 @@ class AppImages {
   /// assets/images/notification.svg
   static const String imagesNotification = "assets/images/notification.svg";
 
+  
+
   /// Assets for imagesPageViewItem1BackgroundImage
   /// assets/images/page_view_item1_background_image.svg
   static const String imagesPageViewItem1BackgroundImage =
