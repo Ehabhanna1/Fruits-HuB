@@ -19,6 +19,7 @@ List<BottomNavBarEntity>get bottomNavBarList => [
     inActiveIcon: AppImages.imagesVuesaxOutlineHome,
     activeIcon: AppImages.imagesVuesaxBoldHome,
     name: 'الرئيسية',
+    
   ),
   BottomNavBarEntity(
     inActiveIcon: AppImages.imagesVuesaxOutlineProducts,
