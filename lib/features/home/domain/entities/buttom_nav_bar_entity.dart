@@ -29,7 +29,7 @@ List<BottomNavBarEntity>get bottomNavBarList => [
   BottomNavBarEntity(
     inActiveIcon: AppImages.imagesVuesaxOutlineShoppingCart,
     activeIcon: AppImages.imagesVuesaxBoldShoppingCart,
-    name: 'سلة المشتريات',
+    name: 'سلة التسوق',
   ),
   BottomNavBarEntity(
     inActiveIcon: AppImages.imagesVuesaxOutlineUser,
