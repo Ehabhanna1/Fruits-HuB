@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+
 import 'package:fruits_hub_app/core/utils/app_colors.dart';
 import 'package:fruits_hub_app/core/utils/app_images.dart';
 import 'package:fruits_hub_app/core/utils/app_text.dart';
@@ -11,8 +11,7 @@ class FruitItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: MediaQuery.sizeOf(context).width * 0.4,
-      height: MediaQuery.sizeOf(context).height * 0.27,
+     
       decoration: BoxDecoration(
         color: Color(0xFFF3F5F7),
         borderRadius: BorderRadius.circular(16), 
