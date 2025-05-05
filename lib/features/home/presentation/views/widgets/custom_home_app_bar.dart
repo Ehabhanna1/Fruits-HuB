@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fruits_hub_app/core/helper_functions/get_user.dart';
 
 
 import 'package:fruits_hub_app/core/utils/app_images.dart';
@@ -15,7 +16,7 @@ class CustomHomeAppBar extends StatelessWidget {
       title: Text('مرحبا...', style: TextStyles.regular16.copyWith(
         color: Color(0xFF949D9E)
       )),
-      subtitle: Text('ايهاب', style: TextStyles.bold18.copyWith(
+      subtitle: Text(getUser().name, style: TextStyles.bold18.copyWith(
         color: Color(0xFF0C0D0D),
       )),
       trailing: NotificationWidget(),

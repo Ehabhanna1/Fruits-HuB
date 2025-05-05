@@ -23,6 +23,8 @@ class SharedPrefs {
     await _instance.setString(key, value);
   }
 
-
+  static getString(String key) {
+    return _instance.getString(key) ?? '';
+  }
   
 }

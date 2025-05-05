@@ -65,6 +65,8 @@ class AuthRepoImpl extends AuthRepo {
       );
 
       var userEntity = await getUserData(uId: user.uid);
+      // save user data in shared preferences
+      await saveUserData(user: userEntity);
       return Right(userEntity);
     } on CustomException catch (e) {
       return left(ServerFailuer(e.message));
