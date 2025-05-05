@@ -13,8 +13,7 @@ class ActiveIcon extends StatelessWidget {
     return Center(
       child: Container(
         padding: const EdgeInsets.only(left:15),
-        //width: 85,
-       //   height: 40,
+      
         decoration: ShapeDecoration(
           color: Color(0xFFEEEEEE),
           shape: RoundedRectangleBorder(

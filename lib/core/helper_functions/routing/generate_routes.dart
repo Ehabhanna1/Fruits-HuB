@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fruits_hub_app/core/helper_functions/routing/routes.dart';
 import 'package:fruits_hub_app/features/auth/presentation/views/sign_in_view.dart';
 import 'package:fruits_hub_app/features/auth/presentation/views/signup_view.dart';
+import 'package:fruits_hub_app/features/best_selling_fruits/presentation/views/best_selling_view.dart';
 import 'package:fruits_hub_app/features/home/presentation/views/home_view.dart';
 import 'package:fruits_hub_app/features/on_boarding/presentation/views/on_boarding_view.dart';
 import 'package:fruits_hub_app/features/splash/presentation/views/splash_view.dart';
@@ -18,7 +19,10 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return MaterialPageRoute(builder: (_) => const SignupView());
     case Routes.homeView:
       return MaterialPageRoute(builder: (_) => const HomeView());
+    case Routes.bestSellingView:
+      return MaterialPageRoute(builder: (_) => const BestSellingView());
     default:
       return MaterialPageRoute(builder: (_) => const SplashView());
   }
 }
+ 

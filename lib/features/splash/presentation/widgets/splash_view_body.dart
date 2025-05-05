@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fruits_hub_app/constants.dart';
 import 'package:fruits_hub_app/core/helper_functions/routing/routes.dart';
+import 'package:fruits_hub_app/core/services/firebase_auth_service.dart';
 import 'package:fruits_hub_app/core/services/shared_preference_singleton.dart';
 import 'package:fruits_hub_app/core/utils/app_images.dart';
 
@@ -48,7 +49,13 @@ class _SplashViewBodyState extends State<SplashViewBody> {
     bool isOnBoardingViewSeen = SharedPrefs.getBool(kIsOnBoardingViewSeen) ?? false;
     Future.delayed(const Duration(seconds:3), () {
      if (isOnBoardingViewSeen) {
-        Navigator.pushReplacementNamed(context, Routes.signInView);
+      var isUserLoggedIn = FirebaseAuthService().isUserLoggedIn();
+      if (isUserLoggedIn){
+        Navigator.pushReplacementNamed(context, Routes.homeView);
+      }else{
+         Navigator.pushReplacementNamed(context, Routes.signInView);
+      }
+       
       } else {
         Navigator.pushReplacementNamed(context, Routes.onBoardingView);
       }

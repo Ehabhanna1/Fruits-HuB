@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+
 
 import 'package:fruits_hub_app/core/utils/app_images.dart';
 import 'package:fruits_hub_app/core/utils/app_text.dart';
+import 'package:fruits_hub_app/core/widgets/notification_widget.dart';
 
 class CustomHomeAppBar extends StatelessWidget {
   const CustomHomeAppBar({super.key});
@@ -17,14 +18,8 @@ class CustomHomeAppBar extends StatelessWidget {
       subtitle: Text('ايهاب', style: TextStyles.bold18.copyWith(
         color: Color(0xFF0C0D0D),
       )),
-      trailing: Container(
-        padding: EdgeInsets.all(15),
-        decoration: ShapeDecoration(
-          color: Color(0xFFEEF8ED),
-          shape: OvalBorder()),
-
-        child: SvgPicture.asset(AppImages.imagesNotification),
-      ),
+      trailing: NotificationWidget(),
     );
   }
 }
+
