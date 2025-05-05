@@ -1,11 +1,14 @@
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fruits_hub_app/constants.dart';
 import 'package:fruits_hub_app/core/errors/exceptions.dart';
 import 'package:fruits_hub_app/core/errors/failuer.dart';
 import 'package:fruits_hub_app/core/services/database_service.dart';
 import 'package:fruits_hub_app/core/services/firebase_auth_service.dart';
+import 'package:fruits_hub_app/core/services/shared_preference_singleton.dart';
 import 'package:fruits_hub_app/core/utils/backend_endpoint.dart';
 import 'package:fruits_hub_app/features/auth/data/models/user_model.dart';
 import 'package:fruits_hub_app/features/auth/domain/entities/user_entity.dart';
@@ -26,7 +29,7 @@ class AuthRepoImpl extends AuthRepo {
   ) async {
     User? user;
     try {
-       user = await firebaseAuthService.createUserWithEmailAndPassword(
+      user = await firebaseAuthService.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
@@ -35,12 +38,12 @@ class AuthRepoImpl extends AuthRepo {
 
       return Right(userEntity);
     } on CustomException catch (e) {
-      if (user != null){
+      if (user != null) {
         await firebaseAuthService.deleteUser();
       }
       return left(ServerFailuer(e.message));
     } catch (e) {
-      if (user != null){
+      if (user != null) {
         await firebaseAuthService.deleteUser();
       }
       log(
@@ -79,7 +82,7 @@ class AuthRepoImpl extends AuthRepo {
     try {
       user = await firebaseAuthService.signInWithGoogle();
       var userEntity = UserModel.fromFirebaseUser(user);
-      
+
       var isUserExists = await dataBaseService.checkIfDataExists(
         path: BackendEndpoint.isUserExist,
         documentId: user.uid,
@@ -91,7 +94,7 @@ class AuthRepoImpl extends AuthRepo {
       }
       return Right(userEntity);
     } catch (e) {
-       if (user != null){
+      if (user != null) {
         await firebaseAuthService.deleteUser();
       }
 
@@ -104,12 +107,12 @@ class AuthRepoImpl extends AuthRepo {
   Future<Either<Failuer, UserEntity>> signInWithFacebook() async {
     User? user;
     try {
-       user = await firebaseAuthService.signInWithFacebook();
+      user = await firebaseAuthService.signInWithFacebook();
       var userEntity = UserModel.fromFirebaseUser(user);
       await addUserData(user: userEntity);
       return Right(userEntity);
     } catch (e) {
-      if (user != null){
+      if (user != null) {
         await firebaseAuthService.deleteUser();
       }
       log("Exception in AuthRepoImpl.signInWithFacebook: ${e.toString()}");
@@ -121,7 +124,7 @@ class AuthRepoImpl extends AuthRepo {
   Future addUserData({required UserEntity user}) async {
     await dataBaseService.addData(
       path: BackendEndpoint.addUserData,
-      data: user.toMap(),
+      data: UserModel.fromEntity(user).toMap(),
       documentId: user.uId,
     );
   }
@@ -135,8 +138,12 @@ class AuthRepoImpl extends AuthRepo {
     return UserModel.fromJson(userData);
   }
 
+  @override
+  Future saveUserData({required UserEntity user}) async{
+    var jsonData = jsonEncode(UserModel.fromEntity(user).toMap());
+
+    await SharedPrefs.setString(kUserData, jsonData);
 
 
-
-
+  }
 }
